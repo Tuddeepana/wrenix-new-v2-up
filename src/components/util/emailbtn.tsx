@@ -1,0 +1,24 @@
+import React from 'react';
+import { MdEmail, MdNavigateNext } from 'react-icons/md';
+
+interface EmailDisplayProps {
+    email: string;
+}
+
+const EmailBtn: React.FC<EmailDisplayProps> = ({ email }) => {
+    return (
+        <div className="flex max-w-fit px-2.5 py-2 items-center gap-2 rounded-full bg-[#100E34] shadow-md cursor-pointer">
+            <div className="flex px-1 py-1 flex-col justify-center items-center gap-2.5 rounded-full bg-white">
+                <MdEmail className="text-[#100e34] text-2xl" />
+            </div>
+            <div className="flex justify-center items-center">
+                <p className="text-white text-center font-ar-one-sans text-[1rem] font-medium leading-[0.9375rem] pointer-events-none">
+                    {email}
+                </p>
+                <MdNavigateNext className="text-white text-2xl" />
+            </div>
+        </div>
+    );
+};
+
+export default EmailBtn;
