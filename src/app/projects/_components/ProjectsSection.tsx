@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 interface ProjectProps {
@@ -120,6 +120,120 @@ const Project = ({
 
 export default function ProjectsSection() {
   const router = useRouter();
+
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = document.getElementById('projects-hero-canvas') as HTMLCanvasElement | null;
+    if (!canvas) {
+      throw new Error('Projects hero canvas element not found');
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Set canvas dimensions
+    const setCanvasDimensions = () => {
+      const parent = canvas.parentElement;
+      if (parent) {
+        canvas.width = parent.clientWidth;
+        canvas.height = parent.clientHeight;
+      }
+    };
+
+    setCanvasDimensions();
+    window.addEventListener("resize", setCanvasDimensions);
+
+    // Create particles
+    const particlesArray: Particle[] = [];
+    const numberOfParticles = Math.min(100, Math.floor(canvas.width / 10));
+
+    class Particle {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      color: string;
+
+      constructor() {
+        const { width, height } = canvas!;
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 5 + 1;
+        this.speedX = Math.random() * 3 - 1.5;
+        this.speedY = Math.random() * 3 - 1.5;
+        this.color = `rgba(94, 96, 206, ${Math.random() * 0.5})`;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas!.width) this.x = 0;
+        if (this.x < 0) this.x = canvas!.width;
+        if (this.y > canvas!.height) this.y = 0;
+        if (this.y < 0) this.y = canvas!.height;
+      }
+
+      draw() {
+        if (!ctx) return;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const init = () => {
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    };
+
+    init();
+
+    const connectParticles = () => {
+      if (!ctx) return;
+
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          const dx = particlesArray[a].x - particlesArray[b].x;
+          const dy = particlesArray[a].y - particlesArray[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 100) {
+            const opacity = 1 - distance / 100;
+            ctx.strokeStyle = `rgba(94, 96, 206, ${opacity * 0.2})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
+    const animate = () => {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particlesArray.forEach((particle) => {
+        particle.update();
+        particle.draw();
+      });
+
+      connectParticles();
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", setCanvasDimensions);
+    };
+  }, []);
 
   const projects = [
     {
@@ -252,30 +366,26 @@ export default function ProjectsSection() {
   };
 
   return (
-    <div className="min-h-screen bg-white py-16 md:py-20 lg:py-24">
+    <div className="min-h-screen bg-transparent py-16 md:py-20 lg:py-24">
       {/* Hero Section */}
-      <div className="text-center mb-16 md:mb-20 px-4">
+      <div className="flex justify-center items-center mb-16 md:mb-20 min-h-[60vh] md:min-h-[70vh]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto"
+          className="relative w-full flex justify-center"
         >
+          <canvas ref={canvasRef} id="projects-hero-canvas" className="absolute inset-0" />
+
+
+            <h2 className="inline-block text-2xl sm:text-4xl md:text-5xl lg:text-[6.5rem] font-[500] text-center text-wrenixGray max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] mb-6 leading-tight relative z-10">
+            <span className="whitespace-nowrap">Transformative <span className="text-wrenixYellow">Digital</span></span>
+            <br />
+            <span className="text-wrenixBlue">Projects</span>
+            </h2>
+
            
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-blue-700 mb-6 leading-tight">
-            Transformative Digital
-            <span className="block text-yellow-400">
-              Projects
-            </span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-wrenixDarkBlue leading-relaxed max-w-3xl mx-auto">
-            We turn bold ideas into elegant, high-performing products — built with
-            scalable architectures, beautiful UX, and modern tooling to accelerate
-            growth and drive real results.
-            </p>
-          <div className="mt-8 w-24 h-1 bg-gradient-to-r from-blue-500 to-yellow-400 mx-auto rounded-full" />
+          <div className="mt-8 w-24 h-1 bg-gradient-to-r from-blue-500 to-yellow-400 mx-auto rounded-full relative z-10" />
         </motion.div>
       </div>
 

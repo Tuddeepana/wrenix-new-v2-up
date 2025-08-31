@@ -10,7 +10,7 @@ import takemelk from "../Wrenix Trust Company/Takemelk.webp";
 import tissaFitness from "../Wrenix Trust Company/TissaFitness center.jpeg";
 import caffeineCoders from "../Wrenix Trust Company/CaffeineCoders.jpg";
 import eeeLogo from "../Wrenix Trust Company/WhatsApp Image 2025-08-28 at 19.37.10.jpeg";
-import newLogo from "../Wrenix Trust Company/WhatsApp Image 2025-08-31 at 14.41.43.jpeg";
+
 import freshpick from "../Wrenix Trust Company/freshpick.png";
 
 const logos = [
@@ -23,7 +23,7 @@ const logos = [
   tissaFitness,
   caffeineCoders,
   eeeLogo,
-  newLogo,
+ 
   freshpick,
 ];
 
@@ -39,16 +39,48 @@ const Companies: React.FC = () => {
         </div>
 
         <div className="flex items-center justify-center">
-          <div className="w-[90vw] md:w-[85vw] lg:w-[70vw] mx-auto">
-            <div className="flex items-center justify-between gap-6 md:gap-10 flex-wrap">
-              {logos.map((SrcImage, idx) => (
-                <div
-                  key={idx}
-                  className="flex-1 min-w-[120px] max-w-[160px] flex justify-center items-center opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-                >
-                  <Image src={SrcImage} alt={`brand-${idx}`} width={160} height={60} style={{ objectFit: "contain" }} />
-                </div>
-              ))}
+          <div className="w-full overflow-hidden">
+            <div className="flex items-center gap-8 animate-scroll">
+              {/* First set of logos */}
+              {logos.map((SrcImage, idx) => {
+                const isLargeLogo = SrcImage === caffeineCoders || SrcImage === eeeLogo;
+                return (
+                  <div
+                    key={`first-${idx}`}
+                    className={`flex-shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 flex items-center justify-center ${
+                      SrcImage === tissaFitness ? 'bg-black' : 'bg-white'
+                    }`}
+                  >
+                    <Image 
+                      src={SrcImage} 
+                      alt={`brand-${idx}`} 
+                      width={isLargeLogo ? 140 : 89} 
+                      height={isLargeLogo ? 140 : 89} 
+                      className={isLargeLogo ? "w-full h-full object-cover rounded-full" : "w-16 h-16 md:w-24 md:h-24 object-contain"} 
+                    />
+                  </div>
+                );
+              })}
+              {/* Duplicate set for seamless loop */}
+              {logos.map((SrcImage, idx) => {
+                const isLargeLogo = SrcImage === caffeineCoders || SrcImage === eeeLogo;
+                return (
+                  <div
+                    key={`second-${idx}`}
+                    className={`flex-shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 flex items-center justify-center ${
+                      SrcImage === tissaFitness ? 'bg-black' : 'bg-white'
+                    }`}
+                  >
+                    <Image 
+                      src={SrcImage} 
+                      alt={`brand-${idx}`} 
+                      width={isLargeLogo ? 140 : 80} 
+                      height={isLargeLogo ? 140 : 80} 
+                      className={isLargeLogo ? "w-full h-full object-cover rounded-full" : "w-16 h-16 md:w-24 md:h-24 object-contain"} 
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
