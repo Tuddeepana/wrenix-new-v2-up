@@ -261,12 +261,9 @@ export default function ProjectsSection() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-100 to-yellow-100 text-black text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full border border-blue-200/50 mb-6">
-              <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-yellow-400 rounded-full animate-pulse" />
-              Our Work
-            </div>
+           
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-blue-700 mb-6 leading-tight">
             Transformative Digital
             <span className="block text-yellow-400">
               Projects
