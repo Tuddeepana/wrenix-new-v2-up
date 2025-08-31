@@ -57,31 +57,17 @@ const Project = ({
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
-      className={`flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-16 my-12 sm:my-16 md:my-20 lg:my-[8rem] relative ${
+      className={`flex flex-col md:flex-row items-center gap-4 sm:gap-6 md:gap-12 my-8 sm:my-12 md:my-16 lg:my-[10rem] ${
         isReversed ? "md:flex-row-reverse" : ""
       }`}
     >
-      {/* Background gradient blob */}
-      <div
-        className={`absolute inset-0 -z-10 ${
-          isReversed
-            ? "bg-gradient-to-l from-blue-50/30 via-transparent to-yellow-50/20"
-            : "bg-gradient-to-r from-blue-50/30 via-transparent to-yellow-50/20"
-        } rounded-3xl blur-3xl transform scale-110`}
-      />
       <motion.div
         variants={itemVariants}
-        className={`relative text-transparent bg-gradient-to-br from-blue-600 to-yellow-400 bg-clip-text text-[100px] sm:text-[140px] md:text-[200px] font-black leading-none ${
+        className={`text-amber-400 text-[80px] sm:text-[120px] md:text-[180px] font-bold leading-none ${
           isReversed ? "md:text-right" : "md:text-left"
-        } drop-shadow-sm`}
+        }`}
       >
         {number}
-        {/* Decorative accent */}
-        <div
-          className={`absolute top-0 ${
-            isReversed ? "left-0" : "right-0"
-          } w-4 h-4 md:w-6 md:h-6 bg-gradient-to-r from-blue-500 to-yellow-400 rounded-full animate-pulse`}
-        />
       </motion.div>
 
       <div
@@ -91,7 +77,7 @@ const Project = ({
       >
         <motion.div
           variants={itemVariants}
-          className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-100 to-yellow-100 text-blue-700 text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full border border-blue-200/50"
+          className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-100 to-yellow-100 text-wrenixBlue text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full border border-blue-200/50"
         >
           <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-yellow-400 rounded-full animate-pulse" />
           {category}
@@ -99,14 +85,14 @@ const Project = ({
 
         <motion.h2
           variants={itemVariants}
-          className="text-gray-800 text-3xl sm:text-4xl md:text-[3.5rem] font-black mb-3 sm:mb-4 leading-tight"
+          className="text-wrenixBlue text-2xl sm:text-3xl md:text-[3rem] font-bold mb-2 sm:mb-4 leading-tight"
         >
           {title}
         </motion.h2>
 
         <motion.p
           variants={itemVariants}
-          className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl"
+          className="text-wrenixDarkBlue mx-auto w-full text-sm sm:text-base md:text-[1.2rem] md:mx-0"
         >
           {description}
         </motion.p>
@@ -120,7 +106,7 @@ const Project = ({
           {features.map((feature, index) => (
             <span
               key={index}
-              className="group relative px-4 py-2 bg-white text-gray-700 text-sm font-medium rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-yellow-300 hover:text-yellow-700 transition-all duration-300 cursor-default"
+              className="group relative px-4 py-2 bg-white text-wrenixDarkBlue text-sm font-medium rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-yellow-300 hover:text-yellow-700 transition-all duration-300 cursor-default"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-yellow-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative">{feature}</span>
@@ -275,16 +261,23 @@ export default function ProjectsSection() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 leading-tight">
-            Our Amazing
-            <span className="block text-transparent bg-gradient-to-r from-blue-600 to-yellow-400 bg-clip-text">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-100 to-yellow-100 text-black text-xs md:text-sm font-semibold uppercase tracking-wider rounded-full border border-blue-200/50 mb-6">
+              <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-yellow-400 rounded-full animate-pulse" />
+              Our Work
+            </div>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 leading-tight">
+            Transformative Digital
+            <span className="block text-yellow-400">
               Projects
             </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            Transforming ideas into digital reality through innovative solutions
-            that drive growth and create exceptional user experiences.
-          </p>
+            </h1>
+
+            <p className="text-xl md:text-2xl text-wrenixDarkBlue leading-relaxed max-w-3xl mx-auto">
+            We turn bold ideas into elegant, high-performing products — built with
+            scalable architectures, beautiful UX, and modern tooling to accelerate
+            growth and drive real results.
+            </p>
           <div className="mt-8 w-24 h-1 bg-gradient-to-r from-blue-500 to-yellow-400 mx-auto rounded-full" />
         </motion.div>
       </div>
