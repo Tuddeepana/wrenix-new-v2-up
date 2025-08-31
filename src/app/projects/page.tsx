@@ -1,9 +1,11 @@
 import React from "react";
 import ProjectsSection from "./_components/ProjectsSection";
+import ContactCanvas from "@/components/homePageComponents/ContactCanvas";
 
 const ProjectsPage: React.FC = () => {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+    <main className="min-h-screen relative overflow-hidden">
+      <ContactCanvas />
       <ProjectsSection />
     </main>
   );

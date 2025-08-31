@@ -84,7 +84,7 @@ const ContactCanvas: React.FC = () => {
 
           if (distance < connectionDistance) {
             const opacity = 1 - distance / connectionDistance;
-            ctx.strokeStyle = `rgba(94, 96, 206, ${opacity * 0.2})`;
+            ctx.strokeStyle = `rgba(94, 96, 206, ${opacity * 0.5})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);

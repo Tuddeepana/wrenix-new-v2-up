@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
         this.size = Math.random() * 5 + 1;
         this.speedX = Math.random() * 3 - 1.5;
         this.speedY = Math.random() * 3 - 1.5;
-        this.color = `rgba(94, 96, 206, ${Math.random() * 0.5})`;
+        this.color = `rgba(94, 96, 206, ${Math.random() * 0.8 + 0.2})`;
       }
 
       update() {
@@ -86,7 +86,7 @@ const Hero: React.FC = () => {
 
           if (distance < connectionDistance) {
             const opacity = 1 - distance / connectionDistance;
-            ctx.strokeStyle = `rgba(94, 96, 206, ${opacity * 0.2})`;
+            ctx.strokeStyle = `rgba(94, 96, 206, ${opacity * 0.5})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
       className="flex h-[100vh] justify-center items-center overflow-hidden"
     >
       {/* Background Canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0" />
+      <canvas ref={canvasRef} className="absolute inset-0 -z-10" />
 
       <div className="relative z-10 px-4 md:px-8">
         <h2 className="text-[2rem] sm:text-[3rem] md:text-[4rem] lg:text-[5rem] xl:text-[6.5rem]
