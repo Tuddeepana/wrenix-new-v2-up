@@ -375,18 +375,23 @@ export default function ProjectsSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative w-full flex justify-center"
+          className="relative w-full flex flex-col justify-center items-center"
         >
-          <canvas ref={canvasRef} id="projects-hero-canvas" className="absolute inset-0" />
+          <canvas ref={canvasRef} id="projects-hero-canvas" className="absolute inset-0 w-full h-full" />
 
+          {/* subtle overlay to improve contrast over the canvas */}
+          <div className="absolute inset-0 bg-white/60 pointer-events-none" />
 
-            <h2 className="inline-block mx-auto text-2xl sm:text-4xl md:text-5xl lg:text-[6.5rem] font-[500] text-center text-wrenixGray max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] mb-6 leading-tight relative z-10">
-              <span className="whitespace-nowrap">Transformative <span className="text-wrenixYellow block">Digital</span></span>
-              <span className="text-wrenixBlue block mt-2">Projects</span>
+          <div className="relative z-10 text-center px-4 py-8 md:py-12 w-full">
+            <h2 className="inline-block mx-auto text-2xl sm:text-3xl md:text-4xl lg:text-[5.5rem] font-[600] text-center text-wrenixGray max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] mb-4 tracking-tight leading-tight">
+              <span className="whitespace-nowrap">Transformative <span className="text-wrenixYellow">Digital</span></span>
+                <span className="text-wrenixBlue block mt-6 md:mt-8">Projects</span>
             </h2>
 
            
-          <div className="mt-8 w-24 h-1 bg-gradient-to-r from-blue-500 to-yellow-400 mx-auto rounded-full relative z-10" />
+
+            <div className="mt-4 w-28 h-1 bg-gradient-to-r from-blue-500 to-yellow-400 mx-auto rounded-full" />
+          </div>
         </motion.div>
       </div>
 
