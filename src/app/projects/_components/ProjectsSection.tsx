@@ -144,9 +144,9 @@ export default function ProjectsSection() {
     setCanvasDimensions();
     window.addEventListener("resize", setCanvasDimensions);
 
-    // Create particles
-    const particlesArray: Particle[] = [];
-    const numberOfParticles = Math.min(100, Math.floor(canvas.width / 10));
+  // Create particles (reduced for subtler background)
+  const particlesArray: Particle[] = [];
+  const numberOfParticles = Math.min(30, Math.floor(canvas.width / 50));
 
     class Particle {
       x: number;
@@ -160,10 +160,11 @@ export default function ProjectsSection() {
         const { width, height } = canvas!;
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 5 + 1;
-        this.speedX = Math.random() * 3 - 1.5;
-        this.speedY = Math.random() * 3 - 1.5;
-        this.color = `rgba(94, 96, 206, ${Math.random() * 0.5})`;
+  // smaller, slower, and more transparent particles for a lighter effect
+  this.size = Math.random() * 2 + 0.8;
+  this.speedX = Math.random() * 1 - 0.5;
+  this.speedY = Math.random() * 1 - 0.5;
+  this.color = `rgba(94, 96, 206, ${Math.random() * 0.25})`;
       }
 
       update() {
@@ -202,9 +203,10 @@ export default function ProjectsSection() {
           const dy = particlesArray[a].y - particlesArray[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 100) {
-            const opacity = 1 - distance / 100;
-            ctx.strokeStyle = `rgba(94, 96, 206, ${opacity * 0.2})`;
+          if (distance < 60) {
+            const opacity = 1 - distance / 60;
+            // lighter connection lines
+            ctx.strokeStyle = `rgba(94, 96, 206, ${opacity * 0.12})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -378,10 +380,9 @@ export default function ProjectsSection() {
           <canvas ref={canvasRef} id="projects-hero-canvas" className="absolute inset-0" />
 
 
-            <h2 className="inline-block text-2xl sm:text-4xl md:text-5xl lg:text-[6.5rem] font-[500] text-center text-wrenixGray max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] mb-6 leading-tight relative z-10">
-            <span className="whitespace-nowrap">Transformative <span className="text-wrenixYellow">Digital</span></span>
-            <br />
-            <span className="text-wrenixBlue">Projects</span>
+            <h2 className="inline-block mx-auto text-2xl sm:text-4xl md:text-5xl lg:text-[6.5rem] font-[500] text-center text-wrenixGray max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] mb-6 leading-tight relative z-10">
+              <span className="whitespace-nowrap">Transformative <span className="text-wrenixYellow block">Digital</span></span>
+              <span className="text-wrenixBlue block mt-2">Projects</span>
             </h2>
 
            
