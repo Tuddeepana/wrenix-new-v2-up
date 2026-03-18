@@ -23,6 +23,7 @@ const Navbar: React.FC = () => {
           <Link href={"/about"}>About Us</Link>
           <Link href={"/projects"}>Projects</Link>
           <Link href={"/services"}>Services</Link>
+          <Link href={"/marketing"}>Marketing</Link>
           <Link href={"/contactUs"}>Contact Us</Link>
         </nav>
         <nav className="hidden md:flex gap-[0.5rem] text-[#100E34]">
@@ -77,6 +78,7 @@ const Navbar: React.FC = () => {
           <Link href={"/about"} onClick={toggleMenu}>About Us</Link>
           <Link href={"/projects"} onClick={toggleMenu}>Projects</Link>
           <Link href={"/services"} onClick={toggleMenu}>Services</Link>
+          <Link href={"/marketing"} onClick={toggleMenu}>Marketing</Link>
           <Link href={"/contactUs"} onClick={toggleMenu}>Contact Us</Link>
         </nav>
         <hr className="w-3/4 my-[2rem] border-white" />
