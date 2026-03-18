@@ -8,7 +8,7 @@ import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { TfiWorld } from "react-icons/tfi";
 
-import Logo from "/public/logo/wrenix_logo.png";
+const Logo = "/logo/wrenix_logo.png";
 import FooterIcon from "@/components/util/FooterIcon";
 
 export default function Footer() {

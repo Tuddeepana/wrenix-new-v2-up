@@ -5,7 +5,7 @@ import styles from './comingSoon.module.css';
 
 import EmailBtn from '@/components/util/emailbtn';
 
-import logo from '/public/logo.png'
+const logo = '/logo.png'
 import {MdEmail, MdNavigateNext} from "react-icons/md";
 
 const ComingSoonPage: React.FC = () => {
